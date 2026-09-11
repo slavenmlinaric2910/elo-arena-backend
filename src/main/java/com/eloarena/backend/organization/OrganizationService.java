@@ -28,6 +28,6 @@ public class OrganizationService {
 
         Organization organization = new Organization(name, description, normalizedCode);
 
-        return organizationRepository.save(organization);;
+        return organizationRepository.save(organization);
      }
 }
