@@ -30,4 +30,20 @@ public class Organization {
         this.organizationCode = organizationCode;
         this.createdAt = Instant.now();
     }
+
+    public UUID getId(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getDescription(){
+        return description;
+    }
+    public String getOrganizationCode(){
+        return organizationCode;
+    }
+    public Instant getCreatedAt(){
+        return createdAt;
+    }
 }

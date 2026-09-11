@@ -2,6 +2,7 @@ package com.eloarena.backend.organization;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Locale;
 
 @Service
@@ -29,5 +30,19 @@ public class OrganizationService {
         Organization organization = new Organization(name, description, normalizedCode);
 
         return organizationRepository.save(organization);
+     }
+
+     public List<OrganizationResponse> getAllOrganizations(){
+        return organizationRepository.findAll()
+                .stream()
+                .map(organization ->  new OrganizationResponse(
+                        organization.getId(),
+                        organization.getName(),
+                        organization.getDescription(),
+                        organization.getOrganizationCode(),
+                        organization.getCreatedAt()
+                ))
+                .toList();
+
      }
 }
