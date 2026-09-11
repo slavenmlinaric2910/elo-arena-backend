@@ -20,10 +20,10 @@ public class OrganizationService {
         String normalizedCode = organizationCode
                 .trim()
                 .toUpperCase(Locale.ROOT)
-                .replaceAll("\\s+", "-");;
+                .replaceAll("\\s+", "-");
 
         if(organizationRepository.existsByOrganizationCodeIgnoreCase(normalizedCode)){
-            throw new IllegalArgumentException("Organization code already exists");
+            throw new OrganizationCodeAlreadyExistsException("Organization code already exists");
         }
 
         Organization organization = new Organization(name, description, normalizedCode);
