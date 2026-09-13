@@ -20,10 +20,10 @@ public class OrganizationController {
 
 
     @PostMapping
-    public ResponseEntity<Organization> createOrganization(
+    public ResponseEntity<OrganizationResponse> createOrganization(
             @Valid @RequestBody CreateOrganizationRequest request
     ) {
-        Organization organization = organizationService.createOrganization(
+        OrganizationResponse organization = organizationService.createOrganization(
                 request.name(),
                 request.description(),
                 request.organizationCode()

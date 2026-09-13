@@ -14,7 +14,7 @@ public class OrganizationService {
         this.organizationRepository = organizationRepository;
     }
 
-     public Organization createOrganization(
+     public OrganizationResponse createOrganization(
              String name,
              String description,
              String organizationCode
@@ -28,9 +28,11 @@ public class OrganizationService {
             throw new OrganizationCodeAlreadyExistsException();
         }
 
-        Organization organization = new Organization(name, description, normalizedCode);
+         Organization organization = organizationRepository.save(
+                 new Organization(name, description, normalizedCode)
+         );
 
-        return organizationRepository.save(organization);
+         return toResponse(organization);
      }
 
      public List<OrganizationResponse> getAllOrganizations(){
