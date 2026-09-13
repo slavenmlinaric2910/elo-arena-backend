@@ -1,5 +1,6 @@
 package com.eloarena.backend.common;
 
+import com.eloarena.backend.organization.OrganizationNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,6 +26,21 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(errorResponse);
 
+    }
+
+    @ExceptionHandler(OrganizationNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleOrganizationNotFound(
+            OrganizationNotFoundException exception
+    ){
+        ErrorResponse errorResponse = new ErrorResponse(
+                404,
+                "Not Found",
+                exception.getMessage()
+                );
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(errorResponse);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

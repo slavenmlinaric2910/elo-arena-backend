@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/organizations")
@@ -34,5 +35,10 @@ public class OrganizationController {
     @GetMapping
     public List<OrganizationResponse> getAllOrganizations(){
         return organizationService.getAllOrganizations();
+    }
+
+    @GetMapping("/{id}")
+    public OrganizationResponse getOrganizationById(@PathVariable UUID id){
+        return organizationService.getOrganizationById(id);
     }
 }
