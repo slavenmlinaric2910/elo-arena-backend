@@ -43,13 +43,15 @@ public class OrganizationService {
 
      }
 
-     public OrganizationResponse getOrganizationById(UUID id){
-         Organization organization = organizationRepository
-                 .findById(id)
-                 .orElseThrow(() -> new OrganizationNotFoundException(id));
+    public Organization findOrganizationById(UUID id) {
+        return organizationRepository
+                .findById(id)
+                .orElseThrow(() -> new OrganizationNotFoundException(id));
+    }
 
-         return toResponse(organization);
 
+    public OrganizationResponse getOrganizationById(UUID id){
+         return toResponse(findOrganizationById(id));
      }
 
     private OrganizationResponse toResponse(Organization organization) {
